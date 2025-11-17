@@ -60,7 +60,7 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/payment/process",
+        `${process.env.REACT_APP_BASE_URL}/payment/process`,
         paymentData,
         config
       );

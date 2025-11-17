@@ -45,13 +45,19 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const path = require("path");
-
 const errorMiddleware = require("./middleware/error");
+const cors = require("cors");
 
-// Config
-if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "backend/config/config.env" });
-}
+// // Config
+// if (process.env.NODE_ENV !== "PRODUCTION") {
+//   require("dotenv").config({ path: "backend/config/config.env" });
+// }
+
+// Enable CORS
+app.use(cors({
+  origin: "http://localhost:3000",// Frontend's URL (adjust as needed)
+  credentials: true, // Allow cookies to be sent with cross-origin requests
+}));
 
 app.use(express.json());
 app.use(cookieParser());

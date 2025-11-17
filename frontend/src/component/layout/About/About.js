@@ -5,7 +5,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import InstagramIcon from "@mui/icons-material/Instagram";
 const About = () => {
   const visitInstagram = () => {
-    window.location = "https://instagram.com/meabhisingh";
+    window.location = "https://instagram.com/ecomart_official";
   };
   return (
     <div className="aboutSection">
@@ -18,16 +18,16 @@ const About = () => {
           <div>
             <Avatar
               style={{ width: "10vmax", height: "10vmax", margin: "2vmax 0" }}
-              src="https://res.cloudinary.com/tripleayt/image/upload/v1631555947/products/jpyibarlaxawvcvqjv5b.png"
+              src="https://res.cloudinary.com/db3cgnhmt/image/upload/v1762007003/avatars/nniiupqsyino9vcbvuyl.png"
               alt="Founder"
             />
-            <Typography>Abhishek Singh</Typography>
+            <Typography>Ecomart</Typography>
             <Button onClick={visitInstagram} color="primary">
               Visit Instagram
             </Button>
             <span>
-              This is a sample wesbite made by @meabhisingh. Only with the
-              purpose to teach MERN Stack on the channel 6 Pack Programmer
+              This is a sample wesbite made by me. Only with the
+              purpose to learn MERN Stack.
             </span>
           </div>
           <div className="aboutSectionContainer2">
@@ -39,7 +39,7 @@ const About = () => {
               <YouTubeIcon className="youtubeSvgIcon" />
             </a>
 
-            <a href="https://instagram.com/meabhisingh" target="blank">
+            <a href="https://instagram.com/ecomart_official" target="blank">
               <InstagramIcon className="instagramSvgIcon" />
             </a>
           </div>
