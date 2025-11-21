@@ -3,7 +3,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import "./productList.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import MetaData from "../layout/MetaData";
 import EditIcon from "@mui/icons-material/Edit";
@@ -14,8 +14,6 @@ import { DELETE_USER_RESET } from "../../constants/userConstants";
 
 const UsersList = () => {
   const dispatch = useDispatch();
-
-  const alert = useAlert();
 
   const navigate = useNavigate();
 
@@ -33,23 +31,23 @@ const UsersList = () => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
 
     if (deleteError) {
-      alert.error(deleteError);
+      toast.error(deleteError);
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-      alert.success(message);
+      toast.success(message);
       navigate("/admin/users");
       dispatch({ type: DELETE_USER_RESET });
     }
 
     dispatch(getAllUsers());
-  }, [dispatch, alert, error, deleteError, navigate, isDeleted, message]);
+  }, [dispatch, error, deleteError, navigate, isDeleted, message]);
 
   const columns = [
     { field: "id", headerName: "User ID", minWidth: 180, flex: 0.8 },

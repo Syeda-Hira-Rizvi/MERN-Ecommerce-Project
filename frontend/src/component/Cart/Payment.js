@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import { Typography } from "@mui/material";
-import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 import {
   CardNumberElement,
   CardCvcElement,
@@ -25,7 +25,6 @@ const Payment = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const alert = useAlert();
   const stripe = useStripe();
   const elements = useElements();
   const payBtn = useRef(null);
@@ -89,7 +88,7 @@ const Payment = () => {
       if (result.error) {
         payBtn.current.disabled = false;
 
-        alert.error(result.error.message);
+        toast.error(result.error.message);
       } else { 
         if (result.paymentIntent.status === "succeeded") {
           order.paymentInfo = {
@@ -101,21 +100,21 @@ const Payment = () => {
 
           navigate("/success");
         } else {
-          alert.error("There's some issue while processing payment ");
+          toast.error("There's some issue while processing payment ");
         }
       }
     } catch (error) {
       payBtn.current.disabled = false;
-      alert.error(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, error, alert]);
+  }, [dispatch, error, toast]);
 
   return (
     <Fragment>

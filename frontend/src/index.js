@@ -12,29 +12,55 @@
 //   }
 // });
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import {Provider} from "react-redux";
+
+
+// import React from 'react';
+// import ReactDOM from 'react-dom/client';
+// import App from './App';
+// import {Provider} from "react-redux";
+// import store from "./store";
+// //through this we can use react-alert anywhere in our project
+// import {positions, transitions, Provider as AlertProvider} from "react-alert";
+// import AlertTemplate from "react-alert-template-basic";
+
+// // Error will be 5 secs  
+// const options = {
+//   timeout: 5000,
+//   position: positions.BOTTOM_CENTER,
+//   transition: transitions.SCALE,
+// };
+
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <Provider store={store}>
+//     <AlertProvider template= {AlertTemplate} {...options}>
+//     <App />
+//     </AlertProvider>
+//   </Provider>,
+//   document.getElementById("root")
+// );
+
+
+
+
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+// Toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// Redux
+import { Provider } from "react-redux";
 import store from "./store";
-//through this we can use react-alert anywhere in our project
-import {positions, transitions, Provider as AlertProvider} from "react-alert";
-import AlertTemplate from "react-alert-template-basic";
 
-// Error will be 5 secs  
-const options = {
-  timeout: 5000,
-  position: positions.BOTTOM_CENTER,
-  transition: transitions.SCALE,
-};
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <AlertProvider template= {AlertTemplate} {...options}>
     <App />
-    </AlertProvider>
-  </Provider>,
-  document.getElementById("root")
+    <ToastContainer position="top-center" />
+  </Provider>
 );
-

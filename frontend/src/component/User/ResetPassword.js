@@ -3,7 +3,7 @@ import "./ResetPassword.css";
 import Loader from "../layout/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, resetPassword } from "../../actions/userAction";
-import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 import MetaData from "../layout/MetaData";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import LockIcon from "@mui/icons-material/Lock";
@@ -11,7 +11,6 @@ import { useNavigate, useParams } from "react-router-dom";  // import hooks
 
 const ResetPassword = ({ history, match }) => {
   const dispatch = useDispatch();
-  const alert = useAlert();
   const navigate = useNavigate();   // replaces history
   const { token } = useParams();    // replaces match.params.token
 
@@ -35,16 +34,16 @@ const ResetPassword = ({ history, match }) => {
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
 
     if (success) {
-      alert.success("Password Updated Successfully");
+      toast.success("Password Updated Successfully");
 
       navigate("/login");
     }
-  }, [dispatch, error, alert, history, success]);
+  }, [dispatch, error, history, success]);
 
   return (
     <Fragment>

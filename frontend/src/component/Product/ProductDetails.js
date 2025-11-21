@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 //import ReactStars from "react-rating-stars-component";
 import Loader from '../layout/Loader/Loader.js';
 import ReviewCard from "./ReviewCard.js"; 
-import {useAlert} from "react-alert";
+import { toast } from "react-toastify";
 import MetaData from "../layout/MetaData";
 import { addItemsToCart } from "../../actions/cartAction";
 import {
@@ -25,7 +25,6 @@ import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 const ProductDetails = () => { 
   const dispatch = useDispatch();
   const { id } = useParams();
-  const alert = useAlert();
 
 const {product ,loading, error} = useSelector((state) => state.productDetails);
 console.log(product);
@@ -34,18 +33,6 @@ const { success, error: reviewError } = useSelector(
   (state) => state.newReview
 );
 
-// //console.log(product,"Products, ID",id);
-// useEffect(() =>{
-//   if(error){
-//     alert.error(error);
-//     dispatch(clearErrors());
-//   }
-//   //console.log(product,"before dispatch")
-//   dispatch(getProductDetails(id));
-//   //console.log(product,"after dispatch")
-  
-// },[dispatch, id, error, alert ]);
-// //console.log(product,"after--updated")
 
 let options;
 if (product) {
@@ -83,14 +70,10 @@ const decreaseQuantity = () => {
   setQuantity(qty);
 };
 
-// const addToCartHandler = () => {
-//   dispatch(addItemsToCart(id, quantity));
-//   alert.success("Item Added To Cart");
-// };
 
 const addToCartHandler = () => {
   dispatch(addItemsToCart(id, quantity));
-  alert.success("Item Added To Cart");
+  toast.success("Item Added To Cart");
 
   // Re-fetch product details to update stock status
   dispatch(getProductDetails(id));
@@ -119,17 +102,17 @@ const reviewSubmitHandler = () => {
 //console.log(product,"Products, ID",id);
 useEffect(() =>{
   if(error){
-    alert.error(error);
+    toast.error(error);
     dispatch(clearErrors());
   }
 
   if (reviewError) {
-    alert.error(reviewError);
+    toast.error(reviewError);
     dispatch(clearErrors());
   }
 
   if (success) {
-    alert.success("Review Submitted Successfully");
+    toast.success("Review Submitted Successfully");
     dispatch({ type: NEW_REVIEW_RESET });
   }
 
@@ -140,7 +123,7 @@ useEffect(() =>{
 
   console.log("Quantity updated:", quantity);
   
-},[dispatch, id, error, alert, reviewError, success, quantity ]);
+},[dispatch, id, error, reviewError, success, quantity ]);
 //console.log(product,"after--updated")
 
   return (

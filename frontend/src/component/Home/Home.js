@@ -6,7 +6,7 @@ import MetaData from "../layout/MetaData";
 import {clearErrors, getProduct} from "../../actions/productAction";
 import {useSelector, useDispatch} from "react-redux";
 import Loader from "../layout/Loader/Loader.js";
-import { useAlert } from 'react-alert';
+import { toast } from "react-toastify";
 
 
 
@@ -19,7 +19,6 @@ import { useAlert } from 'react-alert';
 
 const Home = () => {
 
-  const alert = useAlert();
   const dispatch = useDispatch();
   //to render the products  on webpage that are in state we should use useSelector.
   const {loading,error,products} = useSelector(
@@ -29,12 +28,12 @@ const Home = () => {
   useEffect(() => {
 
     if(error){
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
 
    dispatch(getProduct());
-  }, [dispatch, error, alert]);
+  }, [dispatch, error]);
 
   return (
     <Fragment>

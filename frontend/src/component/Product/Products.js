@@ -7,7 +7,7 @@ import ProductCard from "../Home/ProductCard.js";
 import "./Products.css";
 import Pagination from "react-js-pagination";
 import Slider from "@mui/material/Slider";
-import {useAlert} from "react-alert";
+import { toast } from "react-toastify";
 import Typography from "@mui/material/Typography";
 import MetaData from "../layout/MetaData";
 
@@ -26,7 +26,6 @@ const categories = [
 const Products = ({match}) => {
  const dispatch = useDispatch();
  const { keyword } = useParams();
- const alert = useAlert();
 
  const [currentPage, setCurrentPage] = useState(1);
  const [price, setPrice] =useState([0, 25000]);
@@ -56,13 +55,13 @@ const Products = ({match}) => {
 
   useEffect(() =>{
     if(error){
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
     //console.log(products,"products before");
   dispatch(getProduct(keyword, currentPage, price, category, ratings));
   //console.log(products,"products after");
-  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
+  }, [dispatch, keyword, currentPage, price, category, ratings, error]);
 
 
   let count = filteredProductsCount;
