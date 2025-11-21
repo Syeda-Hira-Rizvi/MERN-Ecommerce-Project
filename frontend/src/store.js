@@ -3,7 +3,7 @@ import { legacy_createStore } from 'redux';
 import {combineReducers, applyMiddleware} from "redux";
 import {thunk} from "redux-thunk";
 //to connect with the chrome extension.
-import {composeWithDevTools} from "redux-devtools-extension";
+import {composeWithDevTools} from "@redux-devtools/extension";
 import {reviewReducer, productReviewsReducer, productReducer, productDetailsReducer, productsReducer,newReviewReducer, newProductReducer } from './reducers/productReducer';
 import { userDetailsReducer, allUsersReducer, forgotPasswordReducer, profileReducer, userReducer } from './reducers/userReducer';
 
