@@ -55,7 +55,7 @@ const cors = require("cors");
 
 // Enable CORS
 app.use(cors({
-  origin: ["http://localhost:3000","https://mern-ecommerce-project-alpha.vercel.app"],// Frontend's URL (adjust as needed)
+  origin: "http://localhost:3000",// Frontend's URL (adjust as needed)
   credentials: true, // Allow cookies to be sent with cross-origin requests
 }));
 
@@ -80,6 +80,10 @@ app.use("/api/v1", payment);
 // app.get("*", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
 // });
+
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Backend server is working properly!" });
+});
 
 // Middleware for Errors
 app.use(errorMiddleware);
