@@ -1,7 +1,6 @@
 const app = require("./app");
-const cloudinary = require("cloudinary");
 const connectDatabase = require("./config/database");
-const {PORT, CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET} = require('./config/config.env');
+const {PORT} = require('./config/config.env');
 // const dotenv = require("dotenv");
 
 //Handling uncaught exception
@@ -17,12 +16,6 @@ process.on("uncaughtException", (err)=>{
 
 //Connecting to database
 connectDatabase();
-
-cloudinary.config({
-    cloud_name: CLOUDINARY_NAME,
-    api_key: CLOUDINARY_API_KEY,
-    api_secret: CLOUDINARY_API_SECRET,
-  });
 
 const server = app.listen(PORT,()=>{
     console.log(`Server is working on http://localhost:${PORT}`)
